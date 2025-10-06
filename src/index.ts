@@ -46,7 +46,9 @@ app.get('/api/v1/account', async (req: Request, res: Response) => { // Added typ
     const n8nResponse = await axios.get(n8nWebhookUrl);
     res.status(n8nResponse.status).json(n8nResponse.data);
   } catch (error: any) {
-    console.error('Error calling n8n webhook:', error.message);
+    // === YAHAN BADLAAV KIYA GAYA HAI ===
+    // Ab hum error.message ki jagah poora error object log kar rahe hain
+    console.error('Error calling n8n webhook:', error);
     const status = error.response ? error.response.status : 500;
     const data = error.response ? error.response.data : { error: 'An internal server error occurred' };
     res.status(status).json(data);
